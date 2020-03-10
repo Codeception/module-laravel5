@@ -1,7 +1,7 @@
 <?php
 namespace Codeception\Lib\Connector\Laravel5;
 
-use Exception;
+use Throwable;
 use Illuminate\Contracts\Debug\ExceptionHandler as ExceptionHandlerContract;
 
 /**
@@ -42,32 +42,32 @@ class ExceptionHandlerDecorator implements ExceptionHandlerContract
     /**
      * Report or log an exception.
      *
-     * @param  \Exception $e
+     * @param  \Throwable $e
      * @return void
      */
-    public function report(Exception $e)
+    public function report(Throwable $e)
     {
         $this->laravelExceptionHandler->report($e);
     }
-    
+
     /**
       * Determine if the exception should be reported.
      *
-     * @param  \Exception $e
+     * @param  \Throwable $e
      * @return bool
      */
-    public function shouldReport(Exception $e)
+    public function shouldReport(Throwable $e)
     {
         return $this->exceptionHandlingDisabled;
     }
 
     /**
      * @param $request
-     * @param Exception $e
+     * @param Throwable $e
      * @return \Symfony\Component\HttpFoundation\Response
-     * @throws Exception
+     * @throws Throwable
      */
-    public function render($request, Exception $e)
+    public function render($request, Throwable $e)
     {
         $response = $this->laravelExceptionHandler->render($request, $e);
 
@@ -97,10 +97,10 @@ class ExceptionHandlerDecorator implements ExceptionHandlerContract
      * Render an exception to the console.
      *
      * @param  \Symfony\Component\Console\Output\OutputInterface $output
-     * @param  \Exception $e
+     * @param  \Throwable $e
      * @return void
      */
-    public function renderForConsole($output, Exception $e)
+    public function renderForConsole($output, Throwable $e)
     {
         $this->laravelExceptionHandler->renderForConsole($output, $e);
     }
