@@ -1,5 +1,5 @@
 {
-    "name":"roosht3/module-laravel5",
+    "name":"codeception/module-laravel5",
     "description":"Codeception module for Laravel 5 framework",
     "keywords":["codeception", "laravel5"],
     "homepage":"http://codeception.com/",
@@ -11,9 +11,6 @@
         },
         {
             "name":"Michael Bodnarchuk"
-        },
-        {
-            "name":"Rooshan Akthar"
         }
     ],
     "minimum-stability": "RC",
