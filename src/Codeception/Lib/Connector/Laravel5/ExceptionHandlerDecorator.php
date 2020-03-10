@@ -42,7 +42,7 @@ class ExceptionHandlerDecorator implements ExceptionHandlerContract
     /**
      * Report or log an exception.
      *
-     * @param  \Exception $e
+     * @param  \Throwable $e
      * @return void
      */
     public function report(Throwable $e)
@@ -53,7 +53,7 @@ class ExceptionHandlerDecorator implements ExceptionHandlerContract
     /**
       * Determine if the exception should be reported.
      *
-     * @param  \Exception $e
+     * @param  \Throwable $e
      * @return bool
      */
     public function shouldReport(Throwable $e)
@@ -63,9 +63,9 @@ class ExceptionHandlerDecorator implements ExceptionHandlerContract
 
     /**
      * @param $request
-     * @param Exception $e
+     * @param Throwable $e
      * @return \Symfony\Component\HttpFoundation\Response
-     * @throws Exception
+     * @throws Throwable
      */
     public function render($request, Throwable $e)
     {
@@ -97,7 +97,7 @@ class ExceptionHandlerDecorator implements ExceptionHandlerContract
      * Render an exception to the console.
      *
      * @param  \Symfony\Component\Console\Output\OutputInterface $output
-     * @param  \Exception $e
+     * @param  \Throwable $e
      * @return void
      */
     public function renderForConsole($output, Throwable $e)
