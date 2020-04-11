@@ -21,10 +21,15 @@ jobs:
         extensions: mbstring, php-xml, ext-dom, zip, pdo, sqlite
         coverage: none
 
+    - name: Checkout Laravel Sample
+      uses: actions/checkout@v2
+      with:
+        repository: codeception/codeception-laravel5-sample
+        path: framework-tests
+        ref: codeception-3.0
+
     - name: Install Laravel Sample
       run: |
-        git clone -b codeception-3.0 https://github.com/codeception/codeception-laravel5-sample.git framework-tests
-        git --git-dir framework-tests/.git log -n 1
         composer update -d framework-tests --no-dev --prefer-dist --no-interaction
         cp framework-tests/.env.testing framework-tests/.env
         touch framework-tests/storage/testing.sqlite
