@@ -30,11 +30,12 @@ jobs:
 
     - name: Install Laravel Sample
       run: |
-        composer update -d framework-tests --no-dev --prefer-dist --no-interaction
-        cp framework-tests/.env.testing framework-tests/.env
-        touch framework-tests/storage/testing.sqlite
-        php framework-tests/artisan migrate --env=testing --database=sqlite_testing --force
-        php framework-tests/artisan config:clear
+        composer update --no-dev --prefer-dist --no-interaction
+        cp .env.testing .env
+        touch storage/testing.sqlite
+        php artisan migrate --env=testing --database=sqlite_testing --force
+        php artisan config:clear
+      working-directory: framework-tests
 
     - name: Validate composer.json and composer.lock
       run: composer validate
@@ -44,5 +45,5 @@ jobs:
 
     - name: Run test suite
       run: |
-        php ./vendor/bin/codecept build -c framework-tests
-        php ./vendor/bin/codecept run functional -c framework-tests
+        php vendor/bin/codecept build -c framework-tests
+        php vendor/bin/codecept run functional -c framework-tests
