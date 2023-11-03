@@ -192,10 +192,11 @@ class Laravel5 extends Client
 
         $this->app = $this->kernel = $this->loadApplication();
 
+        $this->app->make('Illuminate\Contracts\Http\Kernel')->bootstrap();
+
         // Set the request instance for the application,
         if (is_null($request)) {
-            $appConfig = require $this->module->config['project_dir'] . 'config/app.php';
-            $request = SymfonyRequest::create($appConfig['url']);
+            $request = SymfonyRequest::create($this->app['config']->get('app.url'));
         }
         $this->app->instance('request', Request::createFromBase($request));
 
@@ -207,8 +208,6 @@ class Laravel5 extends Client
                 });
             });
         }
-
-        $this->app->make('Illuminate\Contracts\Http\Kernel')->bootstrap();
 
         // Record all triggered events by adding a wildcard event listener
         // Since Laravel 5.4 wildcard event handlers receive the event name as the first argument,
